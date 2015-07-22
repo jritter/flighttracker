@@ -1,0 +1,19 @@
+<div class="jumbotron" ng-controller="MainCtrl as mainCtrl">
+  <h1>Welcome to the FlightTracker</h1>
+  <p class="lead">
+  Currently tracking {{flightsFactory.num}} aircrafts...
+  </p>
+
+</div>
+
+<div ng-if="geoSupport()">
+  <p>Your position:</p>
+  <dl class="dl-horizontal" style="width:100px">
+    <dt>Longitude</dt>
+    <dd>{{position.coords.longitude}}</dd>
+    <dt>Latitude</dt>
+    <dd>{{position.coords.latitude}}</dd>
+  </dl>
+</div>
+
+

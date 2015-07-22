@@ -1,0 +1,11 @@
+<tr>
+  <td ng-bind="flight.flight"></td>
+  <td ng-bind="flight.orig"></td>
+  <td ng-bind="flight.dest"></td>
+  <td ng-bind="flight.lon"></td>
+  <td ng-bind="flight.lat"></td>
+  <td ng-bind="flight.altitude"></td>
+  <td><i class="fa fa-plane" ng-style="{ 'transform': 'rotate({{(315 + flight.track) % 360}}deg)', 'color': 'black' }"></i></td>
+  <td ng-bind="flight.registration"></td>
+  <td ng-bind="flight.model_fullname"></td>
+</tr>

@@ -1,0 +1,73 @@
+<div id="flights">
+  <div class="page-header">
+    <h1>Nearby flights</h1>
+    <p class="lead">The FlightTracker currently tracks {{flightsFactory.num}} flights</p>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <table class="table table-striped table-hover">
+        <thead>
+          <th>Flight</th>
+          <th>Orig</th>
+          <th>Dest</th>
+          <th>Lon</th>
+          <th>Lat</th>
+          <th>Altitude</th>
+          <th>Head</th>
+          <th>Registration</th>
+          <th>Aircraft Model</th>
+        </thead>
+        <tbody>
+        <tr flight-row ng-repeat="flight in flightsFactory.flights | filter: filterLonLat | filter: filterFlightNo" ng-click="flightsCtrl.showFlightDetails('{{flight.hex}}')"></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default" role="complementary" ng-controller="FilterCtrl as filterCtrl">
+        <div class="panel-heading">
+          <h3 class="panel-title">Filter</h3>
+        </div>
+        <div class="panel-body">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="flightsFactory.filterLonLat">Hide flights without position
+            </label>
+            <label>
+              <input type="checkbox" ng-model="flightsFactory.filterFlightNo">Hide flights without flight no
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalFlight">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" ng-bind="currentFlight.flight"></h4>
+        </div>                              
+        <div class="modal-body">                  
+          <table class="table table-striped">
+            <tr><td>Flight:</td><td>{{currentFlight.flight}}</td></tr>
+            <tr><td>Origin:</td><td>{{currentFlight.orig}}</td></tr>
+            <tr><td>Destination:</td><td>{{currentFlight.dest}}</td></tr>
+            <tr><td>Aircraft:</td><td>{{currentFlight.model_fullname}}</td></tr>
+            <tr><td>Longitude:</td><td>{{currentFlight.lon}}</td></tr>
+            <tr><td>Latitude:</td><td>{{currentFlight.lat}}</td></tr>
+            <tr><td>Altitude:</td><td>{{currentFlight.altitude}} ft</td></tr>
+            <tr><td>Squawk:</td><td>{{currentFlight.squawk}}</td></tr>
+            <tr><td>Mode S:</td><td>{{currentFlight.hex}}</td></tr>
+            <tr><td>FlightRadar:</td><td><a href="http://www.flightradar24.com/{{currentFlight.flight.trim()}}/" target="blank" rel="noreferrer">FR24</a></td></tr>
+          </table>
+        </div>                                                    
+        <div class="modal-footer">                                      
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>                                                                                  
+      </div><!-- /.modal-content -->                                                                
+    </div><!-- /.modal-dialog -->                                                                     
+  </div><!-- /.modal -->
+</div>
+
+
