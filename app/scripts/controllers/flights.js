@@ -19,7 +19,7 @@ angular.module('flightTracker')
       return !(element.flight === "" && flightsFactory.filterFlightNo);
     };
 
-    this.showFlightDetails = function(flight){
+    this.showFlightDetails = function(flight) {
       $scope.currentFlight = flightsFactory.getFlightByHex(flight);
       $("#modalFlight").modal();
     };

@@ -9,6 +9,7 @@ angular.module('flightTracker')
   var unknown_flight_routes = [];
 
   flights.flights = [];
+  flights.geojson = {};
   flights.num = 0;
 
 
@@ -50,6 +51,25 @@ angular.module('flightTracker')
 
   };
 
+  flights.getGeoJson = function(data) {
+    var geojson = {};
+    geojson.features = [];
+    angular.forEach(data, function(d) {
+      if (parseFloat(d.lon) !== 0 && parseFloat(d.lat) !== 0){
+        var feature = {
+          geometry: {
+            coordinates: [d.lon + "", d.lat + ""],
+            type: "Point",
+          },
+          properties: d,
+          type: "Feature",
+        };
+        geojson.features.push(feature); 
+      }
+    });
+    return geojson;
+  };
+
   flights.getFlightData = function () {
     var deferred = $q.defer();
 
@@ -70,6 +90,7 @@ angular.module('flightTracker')
       flights.flights = data;
       flights.num = flights.flights.length;
       flights.enrichFlightData(data);
+      flights.geojson = flights.getGeoJson(data);
     });
   };
 

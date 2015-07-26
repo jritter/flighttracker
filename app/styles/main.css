@@ -99,3 +99,21 @@ body {
   height: 900px;
   margin-bottom: 10px;
 }
+
+
+.awesome-marker {
+  font-size: 18px;
+  margin-top: 8px;
+  opacity: 1;
+}
+
+.awesome-marker i {
+  icon-color: black;
+  opacity: 1;
+}
+
+.leaflet-div-icon
+{
+  background-color: rgba(0,0,0,0);
+  border-style: none;
+}
